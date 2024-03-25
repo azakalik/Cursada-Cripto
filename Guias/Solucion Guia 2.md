@@ -81,3 +81,32 @@ $$
 Como conclusion, tenemos que hay mas chances de que el atacante devuelva 0 si el mensaje original es $aab$, por lo que no es un mensaje perfecto.
 ## Parte C
 Por lo expuesto en el parrafo anterior, no estamos hablando de un secreto perfecto.
+# Ejercicio 5
+Demo, se saltea
+# Ejercicio 6
+Con el modo ECB, si hay un error en un bloque del texto cifrado transmitido, solamente afecta al bloque de texto claro correspondiente.
+## Parte A
+**En el modo CBC (ver figura) un error de un bit en P1, a través de cuántos bloques de texto cifrado se propaga?**
+![](Pasted%20image%2020240325164124.png)
+El CBC utiliza una encripcion secuencial, en donde cada bloque utiliza un cifrado que proviene del bloque anterior. Esto significa que si falla un bit en el primer bloque, todo el resto de los mensajes se encriptara de forma incorrecta, por lo que no se podra desencriptar.
+
+## Parte B
+**En el modo CBC, un error de un bit en C1, a través de cuántos bloques de texto descrifrado se propaga?**
+Un error en c1 afecta al descifrado de P1 y P2, porque ambos necesitan c1 para descifrar el mensaje adecuado.
+
+## Parte C
+**Si se produce un error de un bit en la transmisión de un carácter del texto cifrado en modo CFB de ocho bits, ¿hasta dónde se propaga el error?**
+Asumimos que el tamaño del IV es $n$, y que es multiplo de 8. CFB de 8 bits significa que cada bloque tiene 8 bits.
+En CFB, si se produce un error de un bit en la transmision de un caracter del texto cifrado, se afecta la desencripcion del primer bloque, asi como los siguientes $n/8$ bloques.
+# Ejercicio 7
+Considerando el siguiente cifrado de Bloque:
+$E(K,M) = (K \cdot M)(mod 32)$
+## Parte A
+**¿cuál es el tamaño del bloque? ¿cuál es el espacio efectivo de la clave?**
+Estamos trabajando en $mod 32$ que es igual a $2^5$, por lo que el tamaño de bloque es el 5.
+Siempre hay que usar numeros primos como clave, para no tener problemas del tipo: 32 y 64 se representan como 0 en mod32. Al usar numeros que sean primos o que no sean divisores de 32 nos evitamos estos problemas.
+Por ende, el espacio efectivo de la clave es $\#$ todos los numeros < 32 que no son divisores de 32.
+## Parte B
+Encriptar el mensaje 24 17 26 25 12 usando modo CBC con vector de inicialización IV = 19 y K = 7. 
+## Parte C
+Desencriptar en modo CBC.
