@@ -61,19 +61,23 @@ Calculamos:
 - $P(C=XXY|(m=aab \land (t=2 \lor t=3))) = \frac 1 {26}$ porque queremos que la primera letra de la clave de cifrado sea igual a la segunda. Esto tiene una probabilidad de $\frac 1 {26}$.
 -  $P(C=XXY|(m=abb \land (t=2 \lor t=3))) = \frac 1 {26}$ porque queremos que la primera letra de la clave de cifrado este un lugar a la izquierda de la segunda. Esto tiene una probabilidad de $\frac 1 {26}$.
 Teniendo en cuenta los resultados anteriores, tenemos que:
+
 $$
 P(b'=0|m=aab)
 = \frac 1 3 P(C=XXY|(m=aab \land t=1)) + \frac 2 3 P(C=XXY|(m=aab \land (t=2 \lor t=3)))
 = \frac 1 3 \cdot 1 + \frac 2 3 \cdot \frac 1 {26}
 = 0.410
 $$
+
 tambien sabemos que:
+
 $$
 P(b'=0|m=abb)
 = \frac 1 3 P(C=XXY|(m=abb \land t=1)) + \frac 2 3 P(C=XXY|(m=abb \land (t=2 \lor t=3)))
 = \frac 1 3 \cdot 0 + \frac 2 3 \cdot \frac 1 {26}
 = 0.077
 $$
+
 Como conclusion, tenemos que hay mas chances de que el atacante devuelva 0 si el mensaje original es $aab$, por lo que no es un mensaje perfecto.
 ## Parte C
 Por lo expuesto en el parrafo anterior, no estamos hablando de un secreto perfecto.
