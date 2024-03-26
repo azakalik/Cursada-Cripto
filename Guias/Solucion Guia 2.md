@@ -101,11 +101,12 @@ En CFB, si se produce un error de un bit en la transmision de un caracter del te
 # Ejercicio 7
 Considerando el siguiente cifrado de Bloque:
 $E(K,M) = (K \cdot M)(mod 32)$
+La idea aca es que queremos encriptar numeros del 0 al 31.
 ## Parte A
 **¿cuál es el tamaño del bloque? ¿cuál es el espacio efectivo de la clave?**
 Estamos trabajando en $mod 32$ que es igual a $2^5$, por lo que el tamaño de bloque es el 5.
 Siempre hay que usar numeros primos como clave, para no tener problemas del tipo: 32 y 64 se representan como 0 en mod32. Al usar numeros que sean primos o que no sean divisores de 32 nos evitamos estos problemas.
-Por ende, el espacio efectivo de la clave es $\#$ todos los numeros < 32 que no son divisores de 32.
+Por ende, el espacio efectivo de la clave es $\#$ todos los numeros < 32 que son coprimos a 32, que es igual a 16
 ## Parte B
 Encriptar el mensaje 24 17 26 25 12 usando modo CBC con vector de inicialización IV = 19 y K = 7. 
 ## Parte C
