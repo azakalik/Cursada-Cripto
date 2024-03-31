@@ -105,9 +105,35 @@ La idea aca es que queremos encriptar numeros del 0 al 31.
 ## Parte A
 **¿cuál es el tamaño del bloque? ¿cuál es el espacio efectivo de la clave?**
 Estamos trabajando en $mod 32$ que es igual a $2^5$, por lo que el tamaño de bloque es el 5.
-Siempre hay que usar numeros primos como clave, para no tener problemas del tipo: 32 y 64 se representan como 0 en mod32. Al usar numeros que sean primos o que no sean divisores de 32 nos evitamos estos problemas.
-Por ende, el espacio efectivo de la clave es $\#$ todos los numeros < 32 que son coprimos a 32, que es igual a 16
+Siempre hay que usar numeros primos como clave, para no tener problemas del tipo: 0 y 32 se representan como 0 en $mod32$. Al u;sar numeros que sean primos o que no sean divisores de 32 nos evitamos estos problemas.
+Por ende, el espacio efectivo de la clave es $\#$ todos los numeros < 32 que son coprimos a 32, que es igual a 16.
 ## Parte B
-Encriptar el mensaje 24 17 26 25 12 usando modo CBC con vector de inicialización IV = 19 y K = 7. 
+**Encriptar el mensaje 24 17 26 25 12 usando modo CBC con vector de inicialización IV = 19 y K = 7.**
+- Encuentro los m: $m = 24 17 26 25 12 \implies$
+	- $m_0 = 24$
+	- $m_1 = 17$
+	- $m_2 = 26$
+	- $m_3 = 25$
+	- $m_4 = 12$
+- Encuentro los c:
+	- $c_0 = ENC(m_0 \oplus IV) = ENC(24 \oplus 19) = ENC(11) = (11 \times 7)mod32  = 13$
+	- $c_1 = ENC(m1 \oplus c_0) = ENC(17 \oplus 13) = ENC(28) = (28 \times 7)mod32 = 4$
+	- $c_2 = ENC(m2 \oplus c_1) = ENC(26 \oplus 4) = ENC(30) = (30 \times 7)mod32 = 18$
+	- $c_3 = 13$
+	- $c_4 = 7$
+- Concluimos que c = 13 4 18 13 7
+
 ## Parte C
-Desencriptar en modo CBC.
+**Desencriptar en modo CBC.**
+- Encuentro los m:
+	- $m_0 = DEC(c_0) \oplus IV$
+	- $m1 = DEC(c_1) \oplus c_0$
+	- $m_2 = DEC(c_2) \oplus c_1$
+	- $m_3 = DEC(c_3) \oplus c_2$
+- En este caso particular, definimos DEC(x) como encontrar $n$ tal que $(n \times 7)mod32 = x$.
+
+# Ejercicio 8
+**Una clave débil para DES es una clave K tal que $E_k(E_k(x)) = x \space \forall x$. Esto significa que la clave es debil si al encriptar dos veces un mensaje con la misma clave, es como si no se hubiera encriptado nunca.**
+**Analizar por qué una clave formada por todos sus bits en 0, o todos sus bits en 1, es una clave débil de DES. ¿Cuáles serían otras dos claves débiles?**
+El algoritmo DES consiste en partir el mensaje en dos mitades, y hacer $\oplus$ entre cada mitad del mensaje y cada mitad de una clave K, repitiendo esto 16 veces.
+Si se eligiera como clave 0000 0000 o 1111 1111, el problema es que cada dos ciclos de los 16, el mensaje volveria a ser el original (porque si al mensaje se le hace $\oplus$ con los mismos bits un numero par de veces, el mensaje cifrado termina siendo igual al original).
