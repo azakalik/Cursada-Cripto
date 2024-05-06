@@ -39,3 +39,6 @@ Si realizamos Eavesdropping:
 - El atacante emite $m_1$ y $m_2$
 - El atacante recibe $c$
 - El atacante no tiene forma de determinar con certeza != 50% cual de los mensajes era el que se encripto
+# Ejercicio 10
+- El atacante recibe acceso a $ENC_K(x)$ y a $DEC_K(x)$
+- El atacante 
